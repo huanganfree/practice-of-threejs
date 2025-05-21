@@ -1,39 +1,47 @@
-<script setup>
-// 引入Three.js
+<script setup lang="ts">
 import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import mesh from './model/mesh.js';
+import points from './model/points.js';
+import line from './model/line.js';
+import RandomMountain, {updatePosition} from './model/RandomMountain.js';
 
-// 创建场景
 const scene = new THREE.Scene();
+  
+scene.add(RandomMountain);
 
-// 创建相机
-const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-camera.position.z = 0.9; // 将相机沿Z轴向后移动，以便看到场景
+const pointLight = new THREE.PointLight(0xffffff, 10000);
+pointLight.position.set(80, 80, 80);
+scene.add(pointLight);
 
-// 创建渲染器
+const axesHelper = new THREE.AxesHelper(200);
+// scene.add(axesHelper);
+
+const width = window.innerWidth;
+const height = window.innerHeight;
+
+const camera = new THREE.PerspectiveCamera(54, width / height, 1, 100000);
+camera.position.set(240, 120, 240);
+camera.lookAt(0, 0, 0);
+
 const renderer = new THREE.WebGLRenderer();
-renderer.setSize(window.innerWidth, window.innerHeight);
-document.body.appendChild(renderer.domElement);
+renderer.setSize(width, height)
 
-// 创建一个立方体
-const geometry = new THREE.BoxGeometry();
-const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
-const cube = new THREE.Mesh(geometry, material);
-
-// 将立方体添加到场景中
-scene.add(cube);
-
-// 动画函数
-function animate() {
-  requestAnimationFrame(animate);
-
-  // 让立方体绕Z轴旋转
-  cube.rotation.z += 0.01;
-
-  // 渲染场景
+// 渲染器
+render();
+function render() {
+  updatePosition()
+  RandomMountain.rotateZ(0.001);
   renderer.render(scene, camera);
+  requestAnimationFrame(render);
 }
 
-animate();
+document.body.appendChild(renderer.domElement);
+
+// 轨道控制线
+const controls = new OrbitControls(camera, renderer.domElement);
+
+
 </script>
 
 <template>
@@ -41,6 +49,4 @@ animate();
   </div>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped lang="less"></style>
