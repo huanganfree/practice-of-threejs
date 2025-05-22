@@ -5,17 +5,18 @@ import mesh from './model/mesh.js';
 import points from './model/points.js';
 import line from './model/line.js';
 import RandomMountain, {updatePosition} from './model/RandomMountain.js';
+import Texture from './model/Texture.js';
 
 const scene = new THREE.Scene();
   
-scene.add(RandomMountain);
+scene.add(Texture);
 
 const pointLight = new THREE.PointLight(0xffffff, 10000);
 pointLight.position.set(80, 80, 80);
 scene.add(pointLight);
 
 const axesHelper = new THREE.AxesHelper(200);
-// scene.add(axesHelper);
+scene.add(axesHelper);
 
 const width = window.innerWidth;
 const height = window.innerHeight;

@@ -13,15 +13,16 @@ const attribute = new THREE.BufferAttribute(vertices, 3);
 geometry.attributes.position = attribute;
 
 const indexes = new Uint16Array([
-    // 0, 1, 2, 2, 1, 3
-    0, 1, 2, 2, 3, 1
+    0, 1, 2, 2, 1, 3
 ]);
 geometry.index = new THREE.BufferAttribute(indexes, 1);
 
 const material = new THREE.MeshBasicMaterial({
     color: new THREE.Color('orange'),
     // wireframe: true,
-    // side: THREE.DoubleSide,
+    side: THREE.DoubleSide,
+    transparent: true,
+    opacity: 0.5,
 });
 
 const mesh = new THREE.Mesh(geometry, material);
