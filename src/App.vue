@@ -5,34 +5,35 @@ import mesh from './model/mesh.js';
 import points from './model/points.js';
 import line from './model/line.js';
 import RandomMountain, {updatePosition} from './model/RandomMountain.js';
-import Texture from './model/Texture.js';
+import Texture from './model/texturePlaneGeometry.js';
+import TextureShareGeometry from './model/textureShapeGeometry.js';
+import ellipseCurve from './model/EllipseCurve.ts';
 
 const scene = new THREE.Scene();
   
-scene.add(Texture);
+scene.add(ellipseCurve);
 
 const pointLight = new THREE.PointLight(0xffffff, 10000);
 pointLight.position.set(80, 80, 80);
 scene.add(pointLight);
 
-const axesHelper = new THREE.AxesHelper(200);
+const axesHelper = new THREE.AxesHelper(300);
 scene.add(axesHelper);
 
-const width = window.innerWidth;
-const height = window.innerHeight;
+const width = 800;
+const height = 400;
 
 const camera = new THREE.PerspectiveCamera(54, width / height, 1, 100000);
-camera.position.set(240, 120, 240);
+camera.position.set(0, 0, 400);
 camera.lookAt(0, 0, 0);
 
-const renderer = new THREE.WebGLRenderer();
+const renderer = new THREE.WebGLRenderer({antialias: true});
 renderer.setSize(width, height)
 
 // 渲染器
 render();
 function render() {
-  updatePosition()
-  RandomMountain.rotateZ(0.001);
+  TextureShareGeometry.material.map.offset.x += 0.001;
   renderer.render(scene, camera);
   requestAnimationFrame(render);
 }
