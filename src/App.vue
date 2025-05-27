@@ -8,10 +8,12 @@ import RandomMountain, {updatePosition} from './model/RandomMountain.js';
 import Texture from './model/texturePlaneGeometry.js';
 import TextureShareGeometry from './model/textureShapeGeometry.js';
 import ellipseCurve from './model/EllipseCurve.ts';
+import splineCurve from './model/SplineCurve.js';
 
 const scene = new THREE.Scene();
   
-scene.add(ellipseCurve);
+// scene.add(ellipseCurve);
+scene.add(splineCurve);
 
 const pointLight = new THREE.PointLight(0xffffff, 10000);
 pointLight.position.set(80, 80, 80);
@@ -24,7 +26,7 @@ const width = 800;
 const height = 400;
 
 const camera = new THREE.PerspectiveCamera(54, width / height, 1, 100000);
-camera.position.set(0, 0, 400);
+camera.position.set(50, 10, 400);
 camera.lookAt(0, 0, 0);
 
 const renderer = new THREE.WebGLRenderer({antialias: true});
@@ -33,7 +35,7 @@ renderer.setSize(width, height)
 // 渲染器
 render();
 function render() {
-  TextureShareGeometry.material.map.offset.x += 0.001;
+  // TextureShareGeometry.material.map.offset.x += 0.001;
   renderer.render(scene, camera);
   requestAnimationFrame(render);
 }
