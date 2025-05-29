@@ -9,15 +9,21 @@ import Texture from './model/texturePlaneGeometry.js';
 import TextureShareGeometry from './model/textureShapeGeometry.js';
 import ellipseCurve from './model/EllipseCurve.ts';
 import splineCurve from './model/SplineCurve.js';
+import latheMesh from './model/LatheGeometry.js';
 
 const scene = new THREE.Scene();
   
 // scene.add(ellipseCurve);
-scene.add(splineCurve);
+// scene.add(splineCurve);
+scene.add(latheMesh);
 
 const pointLight = new THREE.PointLight(0xffffff, 10000);
 pointLight.position.set(80, 80, 80);
 scene.add(pointLight);
+
+const ambientLight = new THREE.AmbientLight();
+scene.add(ambientLight);
+
 
 const axesHelper = new THREE.AxesHelper(300);
 scene.add(axesHelper);
