@@ -10,12 +10,14 @@ import TextureShareGeometry from './model/textureShapeGeometry.js';
 import ellipseCurve from './model/EllipseCurve.ts';
 import splineCurve from './model/SplineCurve.js';
 import latheMesh from './model/LatheGeometry.js';
+import tubeMesh from './model/TubeGeometry.js';
 
 const scene = new THREE.Scene();
   
 // scene.add(ellipseCurve);
 // scene.add(splineCurve);
-scene.add(latheMesh);
+// scene.add(latheMesh);
+scene.add(tubeMesh);
 
 const pointLight = new THREE.PointLight(0xffffff, 10000);
 pointLight.position.set(80, 80, 80);
