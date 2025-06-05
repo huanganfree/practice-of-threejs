@@ -8,7 +8,7 @@ const loader = new THREE.TextureLoader();
 const texture = loader.load(img);
 
 texture.colorSpace = THREE.SRGBColorSpace;
-// texture.wrapT = THREE.RepeatWrapping;
+texture.wrapT = THREE.RepeatWrapping;
 texture.repeat.set(1, 2); // 设置纹理重复次数
 
 const geometry = new THREE.CylinderGeometry(15, 15, 200, 32, 32, true);
