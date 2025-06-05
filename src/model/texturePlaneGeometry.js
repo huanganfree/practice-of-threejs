@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import img from './image.jpg';
+import img from '../assets/image.jpg';
 
 const geometry = new THREE.PlaneGeometry(100, 100);
 const uvs = new Float32Array([

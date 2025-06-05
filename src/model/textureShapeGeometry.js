@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import img from './image.jpg';
+import img from '../assets/image.jpg';
 
 const geometry = new THREE.SphereGeometry(100);
 
