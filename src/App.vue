@@ -16,7 +16,7 @@ import tubeMesh from './model/TubeGeometry.js';
 import timeTunnelMesh, { cameraMove } from './model/timeTunnel.ts';
 import cylinderMesh from './model/uvCylinder.ts';
 import buildHouseMesh from './model/buildHouse.ts';
-
+import ShapeMesh from './model/shape.ts';
 
 
 const scene = new THREE.Scene();
@@ -24,7 +24,8 @@ const scene = new THREE.Scene();
 // scene.add(splineCurve);
 // scene.add(latheMesh);
 // scene.add(timeTunnelMesh);
-scene.add(cylinderMesh)
+// scene.add(cylinderMesh)
+scene.add(ShapeMesh)
 
 
 const pointLight = new THREE.PointLight(0xffffff, 10000);
@@ -42,7 +43,7 @@ const width = 1000;
 const height = 600;
 
 const camera = new THREE.PerspectiveCamera(54, width / height, 1, 100000);
-camera.position.set(-1, -105, 0);
+camera.position.set(200, 200, 200);
 
 camera.lookAt(0, 0, 0);
 
@@ -53,7 +54,8 @@ renderer.setSize(width, height)
 render();
 function render() {
   // cameraMove(camera);
-  cylinderMesh.material.map!.offset.y += 0.01;
+  cylinderMesh.material.map!.offset.y += 0.009;
+  cylinderMesh.rotation.y += 0.009;
   renderer.render(scene, camera);
   requestAnimationFrame(render);
 }
